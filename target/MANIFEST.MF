@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Title: zoo
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: gavin.ackerman
+Implementation-Vendor-Id: za.cput.gavin.zoo
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.7.0_79
+Main-Class: ${start-class}
+

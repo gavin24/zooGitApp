@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by gavin.ackerman on 2016-08-20.
  */
 @RestController
-@RequestMapping("/api/**")
+@RequestMapping
 public class HomePage
 {
     @RequestMapping(value = "/home", method = RequestMethod.GET)

@@ -25,7 +25,7 @@ public class EmployeeController {
 
     //-------------------Create a Employee--------------------------------------------------------
 
-    @RequestMapping(value = "/employee/", method = RequestMethod.POST)
+    @RequestMapping(value = "/employee/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createEmployee(@RequestBody Employee employee, UriComponentsBuilder ucBuilder) {
         employeeService.create(employee);
         HttpHeaders headers = new HttpHeaders();
@@ -56,7 +56,7 @@ public class EmployeeController {
 
     //------------------- Update a Employee --------------------------------------------------------
 
-    @RequestMapping(value = "/employee/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/employee/update{id}", method = RequestMethod.PUT)
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @RequestBody Employee employee) {
 
         Employee currentEmployee = employeeService.readById(id);

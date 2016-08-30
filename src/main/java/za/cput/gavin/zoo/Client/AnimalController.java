@@ -16,7 +16,7 @@ import java.util.Set;
  * Created by gavin.ackerman on 2016-08-19.
  */
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/**")
 public class AnimalController {
     // Inject Service
     @Autowired
@@ -24,7 +24,7 @@ public class AnimalController {
 
     //-------------------Create a Animal--------------------------------------------------------
 
-    @RequestMapping(value = "/animal/", method = RequestMethod.POST)
+    @RequestMapping(value = "/animal/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createAnimal(@RequestBody Animal animal, UriComponentsBuilder ucBuilder) {
         animalService.create(animal);
         HttpHeaders headers = new HttpHeaders();
@@ -78,7 +78,7 @@ public class AnimalController {
 
     //------------------- Delete a Animal --------------------------------------------------------
 
-    @RequestMapping(value = "/animal/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/animal/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Animal> deleteAnimal(@PathVariable("id") long id) {
         Animal animal = animalService.readById(id);
         if (animal == null) {

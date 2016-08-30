@@ -16,6 +16,7 @@ import java.util.Set;
  * Created by gavin.ackerman on 2016-08-19.
  */
 @RestController
+@RequestMapping("/api/**")
 public class AnimalController {
     // Inject Service
     @Autowired
@@ -54,7 +55,7 @@ public class AnimalController {
 
     //------------------- Update a Animal --------------------------------------------------------
 
-    @RequestMapping(value = "/animal/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/animal/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Animal> updateAnimal(@PathVariable("id") long id, @RequestBody Animal animal) {
 
         Animal currentAnimal = animalService.readById(id);

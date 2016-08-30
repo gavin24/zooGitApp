@@ -18,6 +18,7 @@ import java.util.Set;
  * Created by gavin.ackerman on 2016-08-19.
  */
 @RestController
+@RequestMapping("/api/**")
 public class FoodController {
     // Inject Service
     @Autowired

@@ -18,7 +18,7 @@ import java.util.Set;
  * Created by gavin.ackerman on 2016-08-19.
  */
 @RestController
-@RequestMapping("/api/**")
+@RequestMapping("/api/")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;

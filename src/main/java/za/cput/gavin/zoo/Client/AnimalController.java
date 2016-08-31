@@ -78,13 +78,14 @@ public class AnimalController {
 
     //------------------- Delete a Animal --------------------------------------------------------
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Animal> deleteAnimal(@PathVariable("id") long id) {
         Animal animal = animalService.readById(id);
         if (animal == null) {
             return new ResponseEntity<Animal>(HttpStatus.NOT_FOUND);
         }
         animalService.delete(animal);
+
         return new ResponseEntity<Animal>(HttpStatus.NO_CONTENT);
     }
 }

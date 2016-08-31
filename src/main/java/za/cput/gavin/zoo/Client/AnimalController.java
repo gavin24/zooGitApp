@@ -16,7 +16,7 @@ import java.util.Set;
  * Created by gavin.ackerman on 2016-08-19.
  */
 @RestController
-@RequestMapping("/animal**")
+@RequestMapping("/animal/**")
 public class AnimalController {
     // Inject Service
     @Autowired

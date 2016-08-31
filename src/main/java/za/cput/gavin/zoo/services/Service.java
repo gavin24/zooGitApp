@@ -14,7 +14,7 @@ public interface Service<E, ID> {
 
     E update(E entity);
 
-    void delete(E entity);
+   public void delete(E entity);
 
     public List<E> readAll();
 

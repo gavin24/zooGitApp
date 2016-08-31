@@ -18,14 +18,14 @@ import java.util.Set;
  * Created by gavin.ackerman on 2016-08-19.
  */
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/employee/**")
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
     //-------------------Create a Employee--------------------------------------------------------
 
-    @RequestMapping(value = "/employee/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createEmployee(@RequestBody Employee employee, UriComponentsBuilder ucBuilder) {
         employeeService.create(employee);
         HttpHeaders headers = new HttpHeaders();
@@ -34,7 +34,7 @@ public class EmployeeController {
     }
 
     //-------------------Retrieve Single Employee--------------------------------------------------------
-    @RequestMapping(value = "/employee/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Employee> getEmployee(@PathVariable("id") long id) {
         Employee employee = employeeService.readById(id);
         if (employee == null) {
@@ -46,7 +46,7 @@ public class EmployeeController {
 
     //-------------------Retrieve All Stories--------------------------------------------------------
 
-    @RequestMapping(value = "/employees/", method = RequestMethod.GET)
+    @RequestMapping(value = "/all/", method = RequestMethod.GET)
     public ResponseEntity<List<Employee>> getEmployees() {
         List<Employee> patients = employeeService.readAll();
         if(patients.isEmpty())
@@ -56,7 +56,7 @@ public class EmployeeController {
 
     //------------------- Update a Employee --------------------------------------------------------
 
-    @RequestMapping(value = "/employee/update{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update{id}", method = RequestMethod.PUT)
     public ResponseEntity<Employee> updateEmployee(@PathVariable("id") long id, @RequestBody Employee employee) {
 
         Employee currentEmployee = employeeService.readById(id);
@@ -70,6 +70,9 @@ public class EmployeeController {
                 .copy(currentEmployee)
                 .name(employee.getName())
                 .surname(employee.getsurname())
+                .age(employee.getAge())
+                .email(employee.getEmail())
+                .Country(employee.getCountry())
                 .build();
 
         employeeService.update(updatedEmployee);
@@ -78,7 +81,7 @@ public class EmployeeController {
 
     //------------------- Delete a Employee --------------------------------------------------------
 
-    @RequestMapping(value = "/employee/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Employee> deleteEmployee(@PathVariable("id") long id) {
         Employee employee = employeeService.readById(id);
         if (employee == null) {

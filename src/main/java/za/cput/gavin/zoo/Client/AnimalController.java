@@ -16,7 +16,7 @@ import java.util.Set;
  * Created by gavin.ackerman on 2016-08-19.
  */
 @RestController
-@RequestMapping("/api/**")
+@RequestMapping("/animal**")
 public class AnimalController {
     // Inject Service
     @Autowired
@@ -24,7 +24,7 @@ public class AnimalController {
 
     //-------------------Create a Animal--------------------------------------------------------
 
-    @RequestMapping(value = "/animal/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createAnimal(@RequestBody Animal animal, UriComponentsBuilder ucBuilder) {
         animalService.create(animal);
         HttpHeaders headers = new HttpHeaders();
@@ -33,7 +33,7 @@ public class AnimalController {
     }
 
     //-------------------Retrieve Single Animal--------------------------------------------------------
-    @RequestMapping(value = "/animal/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Animal> getAnimal(@PathVariable("id") long id) {
         Animal animal = animalService.readById(id);
         if (animal == null) {
@@ -45,7 +45,7 @@ public class AnimalController {
 
     //-------------------Retrieve All Stories--------------------------------------------------------
 
-    @RequestMapping(value = "/animals/", method = RequestMethod.GET)
+    @RequestMapping(value = "/all/", method = RequestMethod.GET)
     public ResponseEntity<List<Animal>> getAnimals() {
         List<Animal> patients = animalService.readAll();
         if(patients.isEmpty())
@@ -55,7 +55,7 @@ public class AnimalController {
 
     //------------------- Update a Animal --------------------------------------------------------
 
-    @RequestMapping(value = "/animal/update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Animal> updateAnimal(@PathVariable("id") long id, @RequestBody Animal animal) {
 
         Animal currentAnimal = animalService.readById(id);
@@ -78,7 +78,7 @@ public class AnimalController {
 
     //------------------- Delete a Animal --------------------------------------------------------
 
-    @RequestMapping(value = "/animal/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Animal> deleteAnimal(@PathVariable("id") long id) {
         Animal animal = animalService.readById(id);
         if (animal == null) {
